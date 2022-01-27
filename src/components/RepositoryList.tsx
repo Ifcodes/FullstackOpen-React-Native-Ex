@@ -1,4 +1,5 @@
-import {FlatList, SafeAreaView, View} from 'react-native'
+import { useState } from 'react';
+import {FlatList, SafeAreaView, View, StyleSheet} from 'react-native'
 import RepositoryItem, { Props } from './RepositoryItem'
 
 const repositories = [
@@ -10,7 +11,7 @@ const repositories = [
     forksCount: 1589,
     stargazersCount: 21553,
     ratingAverage: 88,
-    reviewCount: 4,
+    reviewCount: 4, 
     ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/4060187?v=4',
   },
   {
@@ -48,16 +49,50 @@ const repositories = [
   },
 ];
 
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 16,
+  }
+})
 const RepositoryList = () => {
+  // const [modifiedList, setModifiedList] = useState(repositories)
   const renderItem = ({ item }: Props) => {
 
+
+  // const convertToDecimal = (val: Number) => {
+  //   let valToStringArr = val.toString().split('')
+  //   valToStringArr.splice(2,0, '.')
+  //   let newVal = Number(parseFloat(valToStringArr.join('')).toFixed(1))
+  //   return newVal 
+  // }
+  // modifiedList.map((item) : any => {
+  //   if(item.forksCount >= 1000) {
+  //     item.forksCount = convertToDecimal(item.forksCount)
+  //     setSelectedId(item.id)
+  //   }
+  //   if(item.ratingAverage >= 1000) {
+  //     item.ratingAverage = convertToDecimal(item.ratingAverage)
+  //     // setSelectedId(item.id)
+  //   }
+  //   if(item.reviewCount >= 1000)  {
+  //     item.reviewCount = convertToDecimal(item.reviewCount)
+  //     // setSelectedId(item.id)
+  //   }
+  //   if(item.stargazersCount >= 1000) {
+  //     item.stargazersCount = convertToDecimal(item.stargazersCount)
+  //     // setSelectedId(item.id)
+  //   }
+
+  //   return item
+  // })
+
     return(
-      <RepositoryItem item={item}/>
+      <RepositoryItem item={item} />
     )
   }
 
   return(
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList 
         data={repositories}
         renderItem={renderItem}
